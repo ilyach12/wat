@@ -1,13 +1,9 @@
 package com.chaikouski.service;
 
 import com.chaikouski.model.ad.Ad;
-import com.chaikouski.model.ad.Model;
 import com.chaikouski.model.user.Owner;
 import com.chaikouski.repository.AdsRepository;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.BufferedOutputStream;
@@ -21,11 +17,10 @@ import java.util.Random;
 public class AdsServiceImpl {
 
     private AdsRepository ads;
-    private String path = "src/main/resources/static/images/";
+    private static final String path = "src/main/resources/static/images/";
 
     public AdsServiceImpl(AdsRepository ads){
         this.ads = ads;
-        deleteByDate();
     }
 
     public Ad findOne(long id){
