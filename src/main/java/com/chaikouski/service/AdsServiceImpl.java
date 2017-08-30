@@ -3,6 +3,7 @@ package com.chaikouski.service;
 import com.chaikouski.model.ad.Ad;
 import com.chaikouski.model.user.Owner;
 import com.chaikouski.repository.AdsRepository;
+import com.chaikouski.utils.FilesProcessor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -11,13 +12,13 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Random;
 
 @Service
 public class AdsServiceImpl {
 
+    private static final String PATH = "src/main/resources/static/images/";
+
     private AdsRepository ads;
-    private static final String path = "src/main/resources/static/images/";
 
     public AdsServiceImpl(AdsRepository ads){
         this.ads = ads;
@@ -28,7 +29,7 @@ public class AdsServiceImpl {
     }
 
     public List<Ad> findAds() {
-        deleteByDate();
+        ads.deleteByDate(LocalDate.now().toString());
         return ads.findAll();
     }
 
@@ -43,13 +44,12 @@ public class AdsServiceImpl {
     public String upload(MultipartFile file, long id) {
         try {
             byte[] bytes = file.getBytes();
-            String name = file.getOriginalFilename();
+            FilesProcessor.processFile(id, file.getOriginalFilename());
             BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(
-                    new File(path + name.replace(".", String.valueOf(
-                            new Random().nextInt(1000) + id + ".")))));
+                    new File(PATH + FilesProcessor.getName() + FilesProcessor.getExtension())));
             stream.write(bytes);
             stream.close();
-            return path + name;
+            return PATH;
         } catch (Exception e) {
             return e.getMessage();
         }
@@ -68,9 +68,5 @@ public class AdsServiceImpl {
 
     public void delete(Ad ad){
         ads.delete(ad);
-    }
-
-    public void deleteByDate(){
-        ads.deleteByDate(LocalDate.now().toString());
     }
 }

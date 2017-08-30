@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Bean;
 
 import javax.servlet.MultipartConfigElement;
 import java.time.LocalDate;
-import java.util.Date;
 
 @SpringBootApplication
 public class WatApplication {
