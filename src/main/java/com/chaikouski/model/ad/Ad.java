@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 @Data
 @Entity
@@ -29,4 +28,5 @@ public class Ad {
     private String description;
     private String date;
     private String image;
+    private int views;
 }

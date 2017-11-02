@@ -18,7 +18,7 @@ public class FilesProcessor {
     public static void processFile(long id, String fileName) throws NoSuchAlgorithmException {
         Matcher matcher = FILE.matcher(fileName);
         if (matcher.find()) {
-            name = Encoder.sha1(matcher.group(1) + id + new Random().nextInt(10000));
+            name = Encoder.randomizeSha1(matcher.group(1) + id + new Random().nextInt(10000));
             extension = matcher.group(2);
         }
     }

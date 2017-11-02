@@ -41,13 +41,13 @@ public class WatApplication {
 			model.save(new Model(3L, mark.getOne(2L), "a4"));
 			model.save(new Model(4L, mark.getOne(2L), "a6"));
 			ad.save(new Ad(1L, owner.getOne(1L), mark.getOne(1L), model.getOne(1L),
-					"This is a fake ad", LocalDate.now().plusMonths(1).toString(), ""));
+					"This is a fake ad", LocalDate.now().plusMonths(1).toString(), "", 0));
 			ad.save(new Ad(2L, owner.getOne(2L), mark.getOne(1L), model.getOne(2L),
-					"This is a fake ad", LocalDate.now().toString(), ""));
+					"This is a fake ad", LocalDate.now().toString(), "", 0));
 			ad.save(new Ad(3L, owner.getOne(1L), mark.getOne(2L), model.getOne(3L),
-					"This is a fake ad", LocalDate.now().plusMonths(1).toString(), ""));
+					"This is a fake ad", LocalDate.now().plusMonths(1).toString(), "", 0));
 			ad.save(new Ad(4L, owner.getOne(2L), mark.getOne(2L), model.getOne(4L),
-					"This is a fake ad", LocalDate.now().plusMonths(1).toString(), ""));
+					"This is a fake ad", LocalDate.now().plusMonths(1).toString(), "", 0));
 			characteristics.save(new Characteristics(1L, ad.getOne(1L), "Black", 4.3,
 					8, "2017-01-01"));
 			characteristics.save(new Characteristics(2L, ad.getOne(2L), "Black", 4.3,
